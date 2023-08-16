@@ -55,5 +55,30 @@
             </ul>
         </div>
     </div>
+
+    <!-- modal -->
+    <div x-data="{open:false}" class="mt-4">
+        <button class="bg-purple-500 text-white rounded-sm p-2 flex
+        " @click="open = !open">
+            Open modal
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mt-1 ml-2 transition-all" :class="{'rotate-90':open}">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+              
+        </button>
+
+        <div class="fixed top-0 bottom-0 left-0 right-0 bg-black opacity-75 grid grid-cols-1 place-items-center" x-show="open">
+            <div class="text-black p-8 rounded-lg bg-white w-1/2 shadow-xl" @click.outside="open=false">
+                <div class="flex justify-between">
+                    <div>Headind</div>
+                    <div @click="open=false" class="cursor-pointer">x</div>
+                </div>
+                <div>
+                    <h3 class="text-xl">This is the body of the modal</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
