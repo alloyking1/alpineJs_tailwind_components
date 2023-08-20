@@ -80,5 +80,32 @@
             </div>
         </div>
     </div>
+
+    <!-- tab -->
+    <div x-data="{
+        tabs:['home','about','contact'],
+        activeTab:'home'
+    }">
+        <div class="flex flex-row mt-8">
+            <template x-for="tab in tabs" :key="tab">
+                <div class="mr-2">
+                    <a href="#" x-text="tab" @click="activeTab = tab" :class="{'text-blue-800 border-b-4 border-blue-900':activeTab == tab}" class="text-blue-500"></a>
+                </div>
+            </template>
+        </div>
+        <div class="my-6"></div>
+        <div x-show="activeTab == 'home'">
+            <!-- body -->
+            home
+        </div>
+        <div x-show="activeTab === 'about'">
+            <!-- about -->
+            about
+        </div>
+        <div x-show="activeTab === 'contact'">
+            <!-- contact -->
+            contact
+        </div>
+    </div>
 </body>
 </html>
