@@ -107,5 +107,28 @@
             contact
         </div>
     </div>
+
+    <!-- carousel -->
+    <div x-data="{
+        images:[
+            'https://images.pexels.com/photos/5050534/pexels-photo-5050534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+            'https://images.pexels.com/photos/341499/pexels-photo-341499.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+            'https://images.pexels.com/photos/5628289/pexels-photo-5628289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+            ],
+        activeImage:'https://images.pexels.com/photos/5050534/pexels-photo-5050534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    }">
+
+        <div>
+            <template x-for="(image, index) in images" :key="index">
+                <div class="flex justify-between w-full">
+                    <button href="#" x-show="activeImage === image" @click="console.log(activeImage = images[index --])" class="mt-8 font-black text-4xl mt-[50%] ml-4"><</button>
+                    <img :src="image" x-show="activeImage === image" alt="">
+                    <button href="#" x-show="activeImage === image" @click="console.log(activeImage = images[index ++])" class="mt-8 font-black text-4xl mt-[50%] ml-4">></button>
+                    
+                </div>
+            </template>
+            
+        </div>
+    </div>
 </body>
 </html>
