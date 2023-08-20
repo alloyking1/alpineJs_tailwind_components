@@ -115,15 +115,39 @@
             'https://images.pexels.com/photos/341499/pexels-photo-341499.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
             'https://images.pexels.com/photos/5628289/pexels-photo-5628289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
             ],
-        activeImage:'https://images.pexels.com/photos/5050534/pexels-photo-5050534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+        activeImage:null,
+        prev(){
+            const index = this.images.indexOf(this.activeImage);
+            if(index === 0) return;
+            this.activeImage = this.images[index - 1];
+        },
+        next(){
+            const index = this.images.indexOf(this.activeImage)
+            if(index === this.images.length - 1) return
+            this.activeImage = this.images[index + 1]
+        },
+        init(){
+            this.activeImage =  this.images.length > 0 ? this.images[0] : null
+        }
     }">
 
         <div>
             <template x-for="(image, index) in images" :key="index">
-                <div class="flex justify-between w-full">
-                    <button href="#" x-show="activeImage === image" @click="console.log(activeImage = images[index --])" class="mt-8 font-black text-4xl mt-[50%] ml-4"><</button>
-                    <img :src="image" x-show="activeImage === image" alt="">
-                    <button href="#" x-show="activeImage === image" @click="console.log(activeImage = images[index ++])" class="mt-8 font-black text-4xl mt-[50%] ml-4">></button>
+                <div class="relative">
+                    
+                    <img :src="activeImage" x-show="activeImage === image" alt="">
+                    <button href="#" x-show="activeImage === image" @click="next" class="absolute right-0 top-1/2  -translate-1/2 font-black">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-28 h-28 text-gray-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                          </svg>
+                          
+                    </button>
+                    <button href="#" x-show="activeImage === image" @click="prev" class="absolute left-0 top-1/2 font-black">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-28 h-28 text-gray-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                          </svg>
+                          
+                    </button>
                     
                 </div>
             </template>
